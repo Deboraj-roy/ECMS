@@ -38,8 +38,4 @@ Design a user-friendly interface for easy navigation and interaction.
 User Interface: Usability, intuitiveness, and aesthetic appeal of the user interface for both customers and store administrators.
 Project Deliverables:
 
-Well-structured ASP.NET codebase implementing all required modules and functionalities.
-A user-friendly graphical interface for interacting with the ECMS.
-Documentation including system architecture, database schema (optional).
-Note: Any additional features or enhancements beyond the specified requirements will be considered as bonus points.
-
+ 
