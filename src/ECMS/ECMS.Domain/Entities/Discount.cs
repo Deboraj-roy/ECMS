@@ -1,4 +1,4 @@
-﻿namespace ECMS.Web.Data.Entites
+﻿namespace ECMS.Domain.Entities
 {
     public class Discount
     {
@@ -10,6 +10,6 @@
 
         public decimal DiscountPercentage { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        //public ICollection<Order> Orders { get; set; }
     }
 }

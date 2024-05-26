@@ -1,4 +1,4 @@
-﻿namespace ECMS.Web.Data.Entites
+﻿namespace ECMS.Domain.Entities
 {
     public class Product
     {
@@ -10,8 +10,8 @@
         public string ImageUrl { get; set; }
 
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        //public Category Category { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        //public ICollection<Order> Orders { get; set; }
     }
 }

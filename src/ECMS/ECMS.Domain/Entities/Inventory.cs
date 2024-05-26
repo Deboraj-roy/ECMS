@@ -1,4 +1,4 @@
-﻿namespace ECMS.Web.Data.Entites
+﻿namespace ECMS.Domain.Entities
 {
     public class Inventory
     {
@@ -6,6 +6,6 @@
         public int ProductId { get; set; }
         public int Quantity { get; set; }
 
-        public Product Product { get; set; }
+        //public Product Product { get; set; }
     }
 }

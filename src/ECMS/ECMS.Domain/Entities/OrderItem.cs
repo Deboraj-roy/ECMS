@@ -1,4 +1,4 @@
-﻿namespace ECMS.Web.Data.Entites
+﻿namespace ECMS.Domain.Entities
 {
     public class OrderItem
     {
@@ -7,7 +7,7 @@
         public int ProductId { get; set; }
         public int Quantity { get; set; }
 
-        public Order Order { get; set; }
-        public Product Product { get; set; }
+        //public Order Order { get; set; }
+        //public Product Product { get; set; }
     }
 }
