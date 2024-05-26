@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-ECMS-c2bfe3d5-2b0e-4a59-9be9-f8d36a95c054</UserSecretsId>
+	<RootNamespace>ECMS.Web</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
