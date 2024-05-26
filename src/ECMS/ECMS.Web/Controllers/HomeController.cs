@@ -1,8 +1,8 @@
-using ECMS.Models;
+using ECMS.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace ECMS.Controllers
+namespace ECMS.Web.Controllers
 {
     public class HomeController : Controller
     {

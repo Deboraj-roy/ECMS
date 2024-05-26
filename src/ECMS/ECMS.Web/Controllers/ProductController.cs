@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace ECMS.Controllers
+namespace ECMS.Web.Controllers
 {
     public class ProductController : Controller
     {

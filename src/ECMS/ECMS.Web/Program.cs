@@ -1,4 +1,4 @@
-using ECMS.Data;
+using ECMS.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

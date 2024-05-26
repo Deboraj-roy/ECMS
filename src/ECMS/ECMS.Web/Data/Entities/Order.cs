@@ -1,4 +1,4 @@
-﻿namespace ECMS.Data.Entites
+﻿namespace ECMS.Web.Data.Entites
 {
     public class Order
     {

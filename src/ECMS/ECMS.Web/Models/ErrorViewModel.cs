@@ -1,4 +1,4 @@
-namespace ECMS.Models
+namespace ECMS.Web.Models
 {
     public class ErrorViewModel
     {
