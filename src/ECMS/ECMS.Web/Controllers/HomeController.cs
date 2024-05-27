@@ -15,11 +15,13 @@ namespace ECMS.Web.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Home index");
             return View();
         }
 
         public IActionResult Privacy()
         {
+            _logger.LogInformation("Home Privacy");
             return View();
         }
 
