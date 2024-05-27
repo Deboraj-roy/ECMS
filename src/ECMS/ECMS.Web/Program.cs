@@ -4,7 +4,6 @@ using DotNetEnv.Configuration;
 using ECMS.Infrastructure;
 using ECMS.Application;
 using ECMS.Web;
-using ECMS.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;

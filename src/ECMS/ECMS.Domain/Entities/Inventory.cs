@@ -1,6 +1,6 @@
 ﻿namespace ECMS.Domain.Entities
 {
-    public class Inventory
+    public class Inventory : IEntity<int>
     {
         public int Id { get; set; }
         public int ProductId { get; set; }

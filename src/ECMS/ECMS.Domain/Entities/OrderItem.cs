@@ -1,6 +1,6 @@
 ﻿namespace ECMS.Domain.Entities
 {
-    public class OrderItem
+    public class OrderItem : IEntity<int>
     {
         public int Id { get; set; }
         public int OrderId { get; set; }

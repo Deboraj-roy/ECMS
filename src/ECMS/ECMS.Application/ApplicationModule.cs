@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using ECMS.Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace ECMS.Application
     {
         protected override void Load(ContainerBuilder builder)
         {
-            //builder.RegisterType<ProductManagementService>().As<IProductManagementService>()
-            //    .InstancePerLifetimeScope(); 
+            builder.RegisterType<ProductManagementService>().As<IProductManagementService>()
+                .InstancePerLifetimeScope();
         }
     }
 }

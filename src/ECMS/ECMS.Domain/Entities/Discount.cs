@@ -1,6 +1,6 @@
 ﻿namespace ECMS.Domain.Entities
 {
-    public class Discount
+    public class Discount : IEntity<int>
     {
         public int Id { get; set; }
         public string Name { get; set; }

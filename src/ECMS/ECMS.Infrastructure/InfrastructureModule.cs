@@ -1,4 +1,7 @@
 ﻿using Autofac;
+using ECMS.Application;
+using ECMS.Domain.Repositories;
+using ECMS.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +35,8 @@ namespace ECMS.Infrastructure
             builder.RegisterType<ApplicationUnitOfWork>().As<IApplicationUnitOfWork>()
                 .InstancePerLifetimeScope();
 
-            //builder.RegisterType<ProductRepository>().As<IroductRepository>()
-            //    .InstancePerLifetimeScope();  
+            builder.RegisterType<ProductRepository>().As<IProductRepository>()
+                .InstancePerLifetimeScope();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ECMS.Domain.Entities
 {
-    public class Order
+    public class Order : IEntity<int>
     {
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
