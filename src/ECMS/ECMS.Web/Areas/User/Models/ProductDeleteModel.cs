@@ -4,8 +4,7 @@ using ECMS.Application.Services;
 namespace ECMS.Web.Areas.User.Models
 {
     public class ProductDeleteModel
-    {
-
+    { 
         private ILifetimeScope _scope;
         private IProductManagementService _productManagementService;
 

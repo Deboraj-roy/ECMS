@@ -50,8 +50,11 @@ try
     });
 
 
+    // Add services to the container.
     builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(connectionString));
+        options.UseSqlServer(connectionString,
+        (m) => m.MigrationsAssembly(migrationAssembly)));
+
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
     builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -92,13 +95,12 @@ try
     //});
 
     app.MapControllerRoute(
-    name: "default",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+       name: "areas",
+       pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
     app.MapControllerRoute(
-        name: "areas",
+        name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
-
 
     Log.Information("Web Application Running...");
     app.Run();

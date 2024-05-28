@@ -7,33 +7,7 @@
     <UserSecretsId>aspnet-ECMS-c2bfe3d5-2b0e-4a59-9be9-f8d36a95c054</UserSecretsId>
 	<RootNamespace>ECMS.Web</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Areas\User\**" />
-    <Content Remove="Areas\User\**" />
-    <EmbeddedResource Remove="Areas\User\**" />
-    <None Remove="Areas\User\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Areas\User\Controllers\ProductController.cs" />
-    <Compile Include="Areas\User\Models\ProductCreateModel.cs" />
-    <Compile Include="Areas\User\Models\ProductDeleteModel.cs" />
-    <Compile Include="Areas\User\Models\ProductDetailsModel.cs" />
-    <Compile Include="Areas\User\Models\ProductListModel.cs" />
-    <Compile Include="Areas\User\Models\ProductUpdateModel.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Areas\User\Views\_ViewImports.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Areas\User\Views\_ViewStart.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
+      
 
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
@@ -59,12 +33,6 @@
   <ItemGroup>
     <Folder Include="Logs\" />
   </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Areas\User\Views\Product\Create.cshtml" />
-    <None Include="Areas\User\Views\Product\Details.cshtml" />
-    <None Include="Areas\User\Views\Product\Index.cshtml" />
-    <None Include="Areas\User\Views\Product\Update.cshtml" />
-  </ItemGroup>
+ 
 
 </Project>

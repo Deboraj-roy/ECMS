@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECMS.Web.Areas.User.Controllers
 {
+    [Area("User")]
     public class ProductController : Controller
     {
 
