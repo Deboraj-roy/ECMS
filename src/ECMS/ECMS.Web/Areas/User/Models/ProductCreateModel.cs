@@ -15,7 +15,7 @@ namespace ECMS.Web.Areas.User.Models
         public string ImageUrl { get; set; } = "https://i.ibb.co/KxryJ9H/image.png";
 
         public ProductCreateModel(IProductManagementService productManagementService)
-        { 
+        {
             _productManagementService = productManagementService;
         }
         public ProductCreateModel()

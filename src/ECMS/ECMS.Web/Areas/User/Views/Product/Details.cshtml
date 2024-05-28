@@ -4,20 +4,20 @@
 }
 
 <h1>Details</h1>
-  
-   <div>
-        <div>
+
+<div>
+    <div>
         <img id="image-preview" src="@Model.product.ImageUrl" style="width:400px" class="rounded rounded-circle" alt="placeholder">
-        </div>
-        <h2>@Model.product.Name</h2>
-        <h2>@Model.product.Price</h2>
-        <h2>@Model.product.Description</h2>
-        <h2>@Model.product.InventoryLevel</h2>
+    </div>
+    <h2>@Model.product.Name</h2>
+    <h2>@Model.product.Price</h2>
+    <h2>@Model.product.Description</h2>
+    <h2>@Model.product.InventoryLevel</h2>
 
     <a asp-action="Update" asp-route-id="@Model.product.Id">Update</a> <!-- Add Update button -->
     <a asp-action="Delete" asp-route-id="@Model.product.Id">Delete</a> <!-- Add Delete button -->
     <button asp-action="index" asp-controller="Product" asp-area="User" class="btn btn-primary form-control">Back</button>
-    </div>
+</div>
 
 
 <script>

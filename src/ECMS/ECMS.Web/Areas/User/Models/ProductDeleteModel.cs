@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using ECMS.Application.Services;
-using ECMS.Domain.Entities;
 
 namespace ECMS.Web.Areas.User.Models
 {

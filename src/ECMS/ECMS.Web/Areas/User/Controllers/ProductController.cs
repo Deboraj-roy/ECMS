@@ -1,15 +1,12 @@
 ﻿using Autofac;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using ECMS.Domain.Entities;
 using ECMS.Web.Areas.User.Models;
-using System.Net;
-using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ECMS.Web.Areas.User.Controllers
 {
     public class ProductController : Controller
     {
+
         private readonly ILifetimeScope _scope;
         private readonly ILogger<ProductController> _logger;
 
@@ -117,17 +114,17 @@ namespace ECMS.Web.Areas.User.Controllers
                 }
             }
             else
-            { 
+            {
                 _logger.LogWarning("ProductController: Update: No product found");
                 return View(productUpdate);
-            } 
+            }
         }
-         
+
 
         public async Task<IActionResult> Delete(int id)
         {
-            var model = _scope.Resolve<ProductDeleteModel>(); 
-            
+            var model = _scope.Resolve<ProductDeleteModel>();
+
             try
             {
                 _logger.LogInformation("ProductController: Delete: Product found: {id}", id);
@@ -139,8 +136,7 @@ namespace ECMS.Web.Areas.User.Controllers
                 _logger.LogError("ProductController: Delete: Error deleting product: {Message}", ex.Message);
                 ModelState.AddModelError("", ex.Message);
                 return View(model);
-            } 
+            }
         }
-         
     }
 }
