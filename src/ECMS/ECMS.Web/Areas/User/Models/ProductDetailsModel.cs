@@ -8,7 +8,7 @@ namespace ECMS.Web.Areas.User.Models
     {
         private ILifetimeScope _scope;
         private IProductManagementService _productManagementService;
-
+        public Product product { get; set; }
         public ProductDetailsModel()
         { }
         public ProductDetailsModel(IProductManagementService productManagementService)
@@ -23,7 +23,8 @@ namespace ECMS.Web.Areas.User.Models
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
-            return await _productManagementService.GetProductAsync(id);
+            product = await _productManagementService.GetProductAsync(id);
+            return product;
         }
     }
 }

@@ -45,6 +45,7 @@ namespace ECMS.Web.Areas.User.Models
 
         public async Task<IList<Product>> GetAllProductAsync()
         {
+            
             return await _productManagementService.GetProductAsync();
         }
     }

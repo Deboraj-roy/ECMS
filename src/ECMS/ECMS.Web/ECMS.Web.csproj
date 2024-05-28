@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\User\Views\Shared\" />
     <Folder Include="Logs\" />
   </ItemGroup>
 
