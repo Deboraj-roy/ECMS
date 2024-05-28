@@ -49,7 +49,8 @@ namespace ECMS.Web.Areas.User.Controllers
                 {
                     model.Resolve(_scope);
                     await model.CreateProductAsync();
-                    _logger.LogInformation("ProductController: Create: Product created");
+                    _logger.LogInformation("ProductController: Create: Product created"); 
+                    TempData["success"] = "Product created";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -75,6 +76,7 @@ namespace ECMS.Web.Areas.User.Controllers
             else
             {
                 _logger.LogWarning("ProductController: Details: No product found");
+                TempData["error"] = "No product found";
                 return View("_NotFoundPartial");
             }
         }
@@ -105,6 +107,7 @@ namespace ECMS.Web.Areas.User.Controllers
                     productUpdate.Resolve(_scope);
                     await productUpdate.UpdateProductAsync(productUpdate.product);
                     _logger.LogInformation("ProductController: Update: Product updated");
+                    TempData["success"] = "Product Updated";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -117,6 +120,7 @@ namespace ECMS.Web.Areas.User.Controllers
             else
             {
                 _logger.LogWarning("ProductController: Update: No product found");
+                TempData["error"] = "No product found";
                 return View(productUpdate);
             }
         }
@@ -130,12 +134,14 @@ namespace ECMS.Web.Areas.User.Controllers
             {
                 await model.DeleteProductAsync(id);
                 _logger.LogInformation("ProductController: Delete: Product found: {id}", id);
+                TempData["warning"] = "Product Deleted";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
                 _logger.LogError("ProductController: Delete: Error deleting product {id}: {Message}",id, ex.Message);
                 //ModelState.AddModelError("", ex.Message);
+                TempData["error"] = "Error deleting product";
                 return View("Error");
             }
         }
