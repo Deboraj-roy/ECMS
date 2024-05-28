@@ -70,7 +70,7 @@ namespace ECMS.Web.Areas.User.Controllers
             if (product != null)
             {
                 _logger.LogInformation("ProductController: Details: Product found: {Name}", product.Name);
-                return View(product);
+                return View(model);
             }
             else
             {
@@ -128,15 +128,15 @@ namespace ECMS.Web.Areas.User.Controllers
 
             try
             {
-                _logger.LogInformation("ProductController: Delete: Product found: {id}", id);
                 await model.DeleteProductAsync(id);
-                return View(model);
+                _logger.LogInformation("ProductController: Delete: Product found: {id}", id);
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                _logger.LogError("ProductController: Delete: Error deleting product: {Message}", ex.Message);
-                ModelState.AddModelError("", ex.Message);
-                return View(model);
+                _logger.LogError("ProductController: Delete: Error deleting product {id}: {Message}",id, ex.Message);
+                //ModelState.AddModelError("", ex.Message);
+                return View("Error");
             }
         }
     }
