@@ -8,7 +8,7 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: ECMS/ECMS.Web/published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
-  WORKING_DIRECTORY: src/ECMS/ECMS.Web
+  WORKING_DIRECTORY: /src
 jobs:
   build:
     runs-on: windows-latest
@@ -21,7 +21,7 @@ jobs:
     - name: Restore
       run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
     - name: Build
-      run: cd ${{ env.WORKING_DIRECTORY }} && Run dotnet build --configuration Release "src/ECMS/ECMS.Web/ECMS.Web.csproj"
+      run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore
     - name: Test
       run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
     - name: Publish
