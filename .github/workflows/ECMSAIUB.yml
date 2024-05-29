@@ -21,7 +21,7 @@ jobs:
     - name: Restore
       run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
     - name: Build
-      run: cd ${{ env.WORKING_DIRECTORY }} && dotnet build --configuration ${{ env.CONFIGURATION }} --no-restore
+      run: cd ${{ env.WORKING_DIRECTORY }} && Run dotnet build --configuration Release "src/ECMS/ECMS.Web/ECMS.Web.csproj"
     - name: Test
       run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
     - name: Publish
