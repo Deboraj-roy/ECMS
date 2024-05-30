@@ -37,14 +37,22 @@ jobs:
     runs-on: windows-latest
     needs: build
     steps:
-    - name: Download artifact from build job
-      uses: actions/download-artifact@v3
-      with:
-        name: webapp
-        path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-    - name: Deploy to Azure WebApp
-      uses: azure/webapps-deploy@v2
-      with:
+     - name: Download artifact from build job
+       uses: actions/download-artifact@v3
+       with:
+         name: .net-app
+
+     - name: Login to Azure
+       uses: azure/login@v1
+       with:
+         client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_FDB179ACDF0540E7BA0041ACACDC6B9E }}
+         tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_19E1B31565E44E6C840C6D79B81A185B }}
+         subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_BBF462AADA0B42A0A8461FE2CBDA5F91 }}
+
+     - name: Deploy to Azure Web App
+       id: deploy-to-webapp
+       uses: azure/webapps-deploy@v2
+       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.ECMSAIUB_F537 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
