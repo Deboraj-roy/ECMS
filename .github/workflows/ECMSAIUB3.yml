@@ -35,7 +35,9 @@ jobs:
 
     # Verify the contents of the myapp directory
     - name: Verify directory contents
-      run: dir ${{env.DOTNET_ROOT}}/myapp
+      run: |
+        cd "${env.DOTNET_ROOT}"
+        dir myapp
     # This step verifies that the myapp directory exists and contains files
 
     - name: Publish Artifacts [upload]
