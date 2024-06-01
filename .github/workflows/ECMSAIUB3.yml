@@ -36,8 +36,8 @@ jobs:
     # Verify the contents of the myapp directory
     - name: Verify directory contents
       run: |
-        cd "${env.DOTNET_ROOT}"
-        dir myapp
+        echo "DOTNET_ROOT: ${env.DOTNET_ROOT}"
+        Get-ChildItem -Path "${env.DOTNET_ROOT}/myapp"
     # This step verifies that the myapp directory exists and contains files
 
     - name: Publish Artifacts [upload]
