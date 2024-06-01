@@ -34,12 +34,8 @@ jobs:
 
     # Verify the contents of the myapp directory
     - name: Verify directory contents
-      run: |
-        if (Test-Path -Path "${env.WORKING_DIRECTORY}") {
-        Get-ChildItem -Path "${env.WORKING_DIRECTORY}"
-        } else {
-         Write-Host "myapp directory does not exist"
-         }
+      run: dir ${{env.WORKING_DIRECTORY}}
+        
     # This step verifies that the myapp directory exists and contains files
 
 

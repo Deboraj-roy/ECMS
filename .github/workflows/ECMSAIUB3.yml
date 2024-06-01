@@ -36,7 +36,7 @@ jobs:
 
     # Verify the contents of the myapp directory
     - name: Verify directory contents
-      run: dir "${{env.WORKING_DIRECTORY}}"
+      run: dir ${{env.WORKING_DIRECTORY}}
     # This step verifies that the myapp directory exists and contains files
 
 
