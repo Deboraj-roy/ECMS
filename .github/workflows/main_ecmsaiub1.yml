@@ -3,74 +3,102 @@
 
 name: Build and deploy ASP.Net Core app to Azure Web App - ECMSAIUB1
 
+# Trigger the workflow on push events to the main branch or on manual workflow dispatch
 on:
   push:
     branches:
       - main
   workflow_dispatch:
+  #When you include workflow_dispatch in your workflow file, it enables a "Run workflow" button on your GitHub repository's Actions tab.
 
+# Define two jobs: build and deploy
 jobs:
   build:
+    # Run the build job on a Windows latest environment
     runs-on: windows-latest
 
+    # Steps for the build job
     steps:
+      # Checkout the repository code
       - uses: actions/checkout@v4
 
+      # Set up.NET Core environment
       - name: Set up.NET Core
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '8.x'
           include-prerelease: true
+        # This step sets up the.NET Core environment with version 8.x and includes prereleases
 
+      # Build the ASP.Net Core app
       - name: Build with dotnet
-         #This will change the working directory to the ECMS.Web project folder before running the dotnet build command.
         run: |
           cd ./src/ECMS/ECMS.Web
           dotnet build --configuration Release
+        # This step changes the working directory to the ECMS.Web project folder and runs the dotnet build command with Release configuration
 
+      # Publish the ASP.Net Core app
       - name: dotnet publish
-         #This will change the working directory to the ECMS.Web project folder before running the dotnet publish command. 
         run: | 
           cd ./src/ECMS/ECMS.Web 
           dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        # This step changes the working directory to the ECMS.Web project folder and runs the dotnet publish command with Release configuration and outputs to the myapp directory
 
+      # Verify the contents of the myapp directory
       - name: Verify directory contents
-                #If you still encounter issues, try using the dir command to verify that the myapp directory exists and contains files:
         run: dir ${{env.DOTNET_ROOT}}/myapp
+        # This step verifies that the myapp directory exists and contains files
 
+      # Upload the artifact for deployment
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
+        # This step uploads the myapp directory as an artifact named.net-app
 
   deploy:
+    # Run the deploy job on a Windows latest environment
     runs-on: windows-latest
+    # This job depends on the build job
     needs: build
+
+    # Environment variables for the deploy job
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write #This is required for requesting the JWT
 
+    # Permissions for the deploy job
+    permissions:
+      id-token: write
+      # This is required for requesting the JWT
+
+    # Steps for the deploy job
     steps:
+      # Download the artifact from the build job
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: .net-app
           path: ${{github.workspace}}/myapp
+        # This step downloads the.net-app artifact from the build job
 
+      # Login to Azure
       - name: Login to Azure
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_D97A2CC2F5C04AC4A66D085B172F1335 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_54C8FCE788D84D42A6CC413235A0CE20 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6356BA64CA9747B3AB008802E7FC780B }}
+        # This step logs in to Azure using the client ID, tenant ID, and subscription ID
 
+      # Deploy to Azure Web App
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'ECMSAIUB1'
+          #Web App Name or Sub domain Name https://ecmsaiub1.azurewebsites.net/
           slot-name: 'Production'
           package: ${{github.workspace}}/myapp
+        # This step deploys the myapp package to the ECMSAIUB1 Azure Web App in the Production slot
