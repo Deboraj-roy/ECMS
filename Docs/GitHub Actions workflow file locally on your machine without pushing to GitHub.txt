@@ -1,0 +1,15 @@
+Step 1: Install the github-action-local-runner tool
+
+Run the following command in your terminal or command prompt:
+
+
+npx github-action-local-runner
+
+Step 2: Run your workflow file locally
+
+Navigate to the directory where your workflow file (main_ecmsaiub1.yml) is located, and run the following command:
+
+npx github-action-local-runner run -e GITHUB_TOKEN=<your-github-token> -e AZUREAPPSERVICE_CLIENTID_D97A2CC2F5C04AC4A66D085B172F1335=<your-azure-client-id> -e AZUREAPPSERVICE_TENANTID_54C8FCE788D84D42A6CC413235A0CE20=<your-azure-tenant-id> -e AZUREAPPSERVICE_SUBSCRIPTIONID_6356BA64CA9747B3AB008802E7FC780B=<your-azure-subscription-id>
+
+
+npx github-action-local-runner run -e GITHUB_TOKEN=<your-github-token>
