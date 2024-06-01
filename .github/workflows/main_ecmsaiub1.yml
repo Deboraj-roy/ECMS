@@ -34,12 +34,15 @@ jobs:
           cd ./src/ECMS/ECMS.Web 
           dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
+             - name: Verify directory contents
+                #If you still encounter issues, try using the dir command to verify that the myapp directory exists and contains files:
+             run: dir ${{env.DOTNET_ROOT}}/myapp
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ./src/ECMS/ECMS.Web/${{env.DOTNET_ROOT}}/myapp
-          if-no-files-found: error
+          path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
     runs-on: windows-latest
