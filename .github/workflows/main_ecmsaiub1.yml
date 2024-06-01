@@ -30,8 +30,8 @@ jobs:
 
       - name: dotnet publish
          #This will change the working directory to the ECMS.Web project folder before running the dotnet publish command. 
-        run: |
-          cd ./src/ECMS/ECMS.Web
+        run: | 
+          cd ./src/ECMS/ECMS.Web 
           dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
