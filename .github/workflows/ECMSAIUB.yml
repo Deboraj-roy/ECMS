@@ -1,14 +1,14 @@
-name: Build and deploy .NET Core application to Web App ECMSAIUB
+name: Publish-profile By [Azure Web AppServices] Build and deploy .NET Core application to Web App ECMSAIUB
 on:
   push:
     branches:
     - main
 env:
-  AZURE_WEBAPP_NAME: ECMSAIUB
+  AZURE_WEBAPP_NAME: ecmsaiub4
   AZURE_WEBAPP_PACKAGE_PATH: ECMS/ECMS.Web/published
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
-  WORKING_DIRECTORY: /src
+  WORKING_DIRECTORY: src/ECMS
 jobs:
   build:
     runs-on: windows-latest
@@ -20,13 +20,25 @@ jobs:
         dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
     - name: Restore
       run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
+
     - name: Build
-      run: dotnet build "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-restore
+      run: |
+        dotnet build "${{ env.WORKING_DIRECTORY }}/ECMS.sln" --configuration ${{ env.CONFIGURATION }} --no-restore
+        dotnet build "${{ env.WORKING_DIRECTORY }}/ECMS.Web/ECMS.Web.csproj" --configuration ${{ env.CONFIGURATION }} --no-restore
+
     - name: Test
       run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
+
     - name: Publish
       run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration ${{ env.CONFIGURATION }} --no-build --output "${{ env.AZURE_WEBAPP_PACKAGE_PATH }}"
-    - name: Publish Artifacts
+
+    # Verify the contents of the myapp directory
+    - name: Verify directory contents
+      run: dir ${{env.DOTNET_ROOT}}/myapp
+    # This step verifies that the myapp directory exists and contains files
+
+
+    - name: Publish Artifacts [upload]
       uses: actions/upload-artifact@v3
       with:
         name: webapp
@@ -44,5 +56,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.ECMSAIUB_F537 }}
+        publish-profile: ${{ secrets.ECMSAIUB_APP4 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
