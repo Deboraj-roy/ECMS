@@ -1,0 +1,41 @@
+name: Build and deploy.NET Core application to local server
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DOTNET_CORE_VERSION: 8.0.x
+  WORKING_DIRECTORY: src/MyApp
+  DEPLOYMENT_DIRECTORY: /var/www/myapp
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup.NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+      - name: Restore
+        run: dotnet restore "${{ env.WORKING_DIRECTORY }}"
+      - name: Build
+        run: |
+          dotnet build "${{ env.WORKING_DIRECTORY }}/MyApp.sln" --configuration Release --no-restore
+          dotnet build "${{ env.WORKING_DIRECTORY }}/MyApp.Web/MyApp.Web.csproj" --configuration Release --no-restore
+      - name: Test
+        run: dotnet test "${{ env.WORKING_DIRECTORY }}" --no-build
+      - name: Publish
+        run: dotnet publish "${{ env.WORKING_DIRECTORY }}" --configuration Release --no-build --output "${{ env.DEPLOYMENT_DIRECTORY }}"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to local server
+        run: |
+          ssh user@localhost "mkdir -p ${{ env.DEPLOYMENT_DIRECTORY }}"
+          scp ${{ env.DEPLOYMENT_DIRECTORY }}/* user@localhost:${{ env.DEPLOYMENT_DIRECTORY }}
+          ssh user@localhost "chmod -R 755 ${{ env.DEPLOYMENT_DIRECTORY }}"

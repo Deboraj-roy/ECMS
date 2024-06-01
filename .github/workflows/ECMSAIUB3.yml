@@ -9,6 +9,8 @@ env:
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
   WORKING_DIRECTORY: src/ECMS
+  DOTNET_ROOT: C:\Program Files\dotnet
+
 jobs:
   build:
     runs-on: windows-latest
@@ -36,9 +38,13 @@ jobs:
     # Verify the contents of the myapp directory
     - name: Verify directory contents
       run: |
-        echo "DOTNET_ROOT: ${env.DOTNET_ROOT}"
-        Get-ChildItem -Path "${env.DOTNET_ROOT}/myapp"
-    # This step verifies that the myapp directory exists and contains files
+        if (Test-Path -Path "${env.DOTNET_ROOT}\myapp") {
+         Get-ChildItem -Path "${env.DOTNET_ROOT}\myapp"
+         } else {
+         Write-Host "myapp directory does not exist"
+        }
+      shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+     # This step verifies that the myapp directory exists and contains files
 
     - name: Publish Artifacts [upload]
       uses: actions/upload-artifact@v3
