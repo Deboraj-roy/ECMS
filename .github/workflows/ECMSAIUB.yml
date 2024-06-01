@@ -35,8 +35,8 @@ jobs:
     # Verify the contents of the myapp directory
     - name: Verify directory contents
       run: |
-        if (Test-Path -Path "${env.DOTNET_ROOT}/myapp") {
-        Get-ChildItem -Path "${env.DOTNET_ROOT}/myapp"
+        if (Test-Path -Path "${env.WORKING_DIRECTORY}") {
+        Get-ChildItem -Path "${env.WORKING_DIRECTORY}"
         } else {
          Write-Host "myapp directory does not exist"
          }
