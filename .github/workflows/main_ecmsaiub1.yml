@@ -23,8 +23,10 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
-        working-directory: ./src/ECMS/ECMS.Web
+                  #This will change the working directory to the ECMS.Web project folder before running the dotnet build command.
+        run: |
+          cd ./src/ECMS/ECMS.Web
+          dotnet build --configuration Release
 
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
