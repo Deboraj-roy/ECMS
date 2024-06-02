@@ -1,4 +1,7 @@
 - Project Objective: Develop a scalable and user-centric ASP.NET application that functions as a comprehensive e-commerce management system (ECMS), enabling businesses to streamline online store operations and enhance customer experiences.
+
+# Azure CI/CD Deployment Documented yml
+  Using DDD and Clean Architecture
 - live :https://ecmsaiub.azurewebsites.net/
  
 - Core Functionalities:
